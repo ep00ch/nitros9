@@ -1,3 +1,15 @@
+# This Fork
+
+Adds a level 1 port for the CMS 9619 SBC. You need 2 serial devices. One for the terminal 
+connection, and one for the Drivewire connection.
+
+```
+make dsk PORTS=cms9619 
+```
+Start your Drivewire server using NOS9_6809_L1_v030300_cms9619_dw_sc6551.dsk running
+on a serial device connected to ACIA0.
+Then run the loaders/cms.exp script with your other serial device, connected to ACIA1, as an argument.
+
 # The NitrOS-9 Repository (on GitHub)
 
 NitrOS-9 is a community-based distribution of the Microware OS-9 operating system for the 6809 that was introduced in the late 1970s and sold into the 1980s.
