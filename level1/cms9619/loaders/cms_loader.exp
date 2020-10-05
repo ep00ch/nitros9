@@ -1,0 +1,132 @@
+#! /usr/bin/expect
+
+# This script loads the drivewire bootloader into memory
+# using the DEBUG19 debugger.
+# You need to specify a serial connection to ACIA0 port.
+# Make sure you have a drivewire server running
+# and connected to the ACIA1 serial port.
+# After booting, it sets the date for your convenience.
+
+proc send_echo { output } {
+	set outlist [split $output {}]
+	expect -timeout 1 timeout
+	foreach c $outlist {
+                if {[string is control $c]} {
+                        set c "\r"
+                        #send c
+                        #break
+                }
+		send -s $c
+                after 1
+		expect -timeout 2 $c
+		after 3
+                if {[string is control $c]} {
+			after 20
+		}
+	}
+	send "\r"
+}
+
+proc send_v09 { output } {
+	send "\032"
+	expect "\>"
+	send $output
+	send "\r"
+	expect -timeout 1 timeout
+}
+
+proc dump {i} {
+	send_v09 Mdump[exp_pid]$i.bin
+}
+
+if {$argc eq 0} {
+        puts "Enter a path to the serial device as an argument."
+        exit 1
+}
+
+set dumpcnt 1
+set zmodem cms_zm_loader.dbge
+set drivewire cms_dw_loader.dbge
+set datafile $drivewire
+
+set OS9_boot true
+
+
+if [file exist [lindex $argv 0]] {
+        # Get device from command line, if specified
+        set serial_dev [lindex $argv 0]
+} else {
+        puts "\n[lindex $argv 0] is not a valid device\n"
+        exit 1
+}
+
+if [file exist [lindex $argv 1]] {
+        # Get file from command line, if specified
+        # this is convenient for testing small bits of code.
+        set datafile [lindex $argv 1]
+        set OS9_boot false
+}
+
+if {![file exist $datafile]} {
+        puts "\n$datafile: No such file or directory.\nTry 'make dsk PORTS=cms9619'\n"
+        exit 1
+}
+
+
+set send_slow {1 .1}
+
+spawn screen $serial_dev 19200N1,crtscts
+
+send "\r"
+
+set timeout 5
+expect {
+        timeout {send "\r" ; exp_continue}
+        ":"     {send_echo "C 0400 9EFF\r"}
+}
+
+set timeout 10
+expect {
+        timeout {interact : return}
+        ":"     {send_echo "C A000 DFFF\r"}
+}
+
+expect {
+        timeout {interact : return}
+        ":"     {send_echo [exec cat $datafile]}
+}
+
+if {$datafile eq $zmodem} {
+        # set the clock using zmodem
+        
+        expect -- "-E"
+        send " -C -U\r"
+        expect {
+                -- "-E"     {send " -C -U\r" ; exp_continue}
+                ":"         {send_echo "J 9014\r"}
+                timeout
+        }
+        # do bootload process
+        expect {
+                "!!!*.dsk"  {send -s "\r" ; exp_continue}
+                #NITROS9 { dump $dumpcnt ; incr dumpcnt ; exp_continue }
+                timeout     interact
+                # {dump $dumpcnt ; send_v09 X }
+                "\r\n:O"    {send -s "\r" ; exp_continue}
+                "\r\n:$"    {send_echo "J 2602\r" ; exp_continue}
+                OS9: interact
+        }
+}
+
+set timeout 60
+
+if {$OS9_boot eq true} {
+        expect {
+                "NITROS9 BOOT" {exp_continue}
+                "Time ?" {send_echo [exec date "+%Y/%m/%d %T"]}
+        }
+}
+interact
+
+close
+exit

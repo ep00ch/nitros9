@@ -17,10 +17,24 @@ CMS9619.D      set       1
                nam       cms9619.d
                ttl       NitrOS-9 System Definitions for the CMS 9619 SBC
 
+
+RTC58321        set 58321
+MC6840          set 6840
+
+*ClocType        set RTC58321
+ClocType       set MC6840
+
+
 **********************************
 * Ticks per second
 *
+        ifeq    ClocType-MC6840
 TkPerSec       SET       60
+        endc
+
+        ifeq    ClocType-RTC58321
+TkPerSec       SET       1
+        endc
 
 
 *************************************************
@@ -43,9 +57,7 @@ IOBase          equ $FFC0   * U12 PAL DECODER
 
 
 EXTIO           equ $FFC0   * Free for External IO
-* If using TS14 only, set PIA0Base 2 addresses lower than it is
-* to make clock.asm use CA1 instead of CA2 for tick.
-* Otherwise, jump TS14-1 to right side of TS10.
+
 PIA0Base        equ $FFC4   *-2 * U31 MC6821 PIA - RTC and BAUD DIP
 RTCBase         equ $FFC4   * RTC is on PIA0
 
@@ -64,7 +76,6 @@ MSBT2   rmb     1       * MSB for timer 2
 T2LSB   rmb     1       * LSB for timer 2
 MSBT3   rmb     1       * MSB for timer 3
 T3LSB   rmb     1       * LSB for timer 3
-
 
 
 * ACIA0 is a lower address, but is the secondary ACIA.

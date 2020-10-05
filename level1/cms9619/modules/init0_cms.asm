@@ -74,8 +74,10 @@ OutputStartup
 *
         ldy     #ScStart+$100  Screen buffer Msg Line
         tfr     y,x
-        clra
-        sta     $1f,x          End the line with a NULL at last column
+        ldd     #$0D0A
+        std     $1c,x
+        ldd     #$0000
+        std     $1e,x          End the line with a NULL at last column
 
 out1    lda     ,x+
         beq     out2

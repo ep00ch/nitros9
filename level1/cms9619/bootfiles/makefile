@@ -10,8 +10,8 @@ KERNEL_CMS	= $(MD)/rel $(MD)/init0_cms $(MD)/krn $(MD)/krnp2 $(MD)/init_cms
 TERM		= $(MD)/sc6551_cms.dr $(MD)/term_sc6551_cms.dt \
 			$(MD)/t0_sc6551_cms.dd $(MD)/t1_sc6551_cms.dd
 PIPE		= $(MD)/pipeman.mn $(MD)/piper.dr $(MD)/pipe.dd
-CLOCKCMS	= $(MD)/clock $(MD)/clock2_cms #$(MD)/clock2_soft
-GO		= $(MD)/sysgo $(CMDS)/shell_21 $(CMDS)/date $(CMDS)/setime
+CLOCKCMS	= $(MD)/clock $(MD)/clock2_cms 
+#$(MD)/clock2_soft
 
 BOOTF_PRE	= $(MD)/ioman \
 		$(MD)/rbf.mn
@@ -20,7 +20,7 @@ BOOTF_POST	= $(MD)/ddx0.dd $(MD)/scf.mn \
 		$(TERM) \
 		$(PIPE) \
 		$(CLOCKCMS) \
-		$(GO)
+		$(MD)/sysgo
 
 KERNELS 	= kernel_dw_sc6551 kernel_dw_mc6821 kernel_zm
 

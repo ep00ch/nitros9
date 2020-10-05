@@ -25,8 +25,7 @@
 * the kernel track using DriveWire.
 *
         use     defsfile
-        use       drivewire.d
-
+        use     drivewire.d
 
 
 DOSBUF  equ     $2600           * RAM LOAD LOCATION FOR THE DOS COMMAND
@@ -78,7 +77,7 @@ SECMAX  equ     18              * MAXIMUM NUMBER OF SECTORS PER TRACK
 * read kernel track
 sec     bsr     DW_READ         * get next sector
         incb
-        cmpb    #$77
+        cmpb    #$77            * last sector?
         blt     sec             * continue until have complete track
 
 * restore ACIA1

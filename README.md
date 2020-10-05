@@ -8,7 +8,7 @@ make dsk PORTS=cms9619
 ```
 Start your Drivewire server using NOS9_6809_L1_v030300_cms9619_dw_sc6551.dsk running
 on a serial device connected to ACIA0.
-Then run the loaders/cms.exp script with your other serial device, connected to ACIA1, as an argument.
+Then run the loaders/cms_loader.exp script with your other serial device, connected to ACIA1, as an argument.
 
 # The NitrOS-9 Repository (on GitHub)
 

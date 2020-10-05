@@ -683,7 +683,7 @@ CZM
 Z_CLK
 Z_LPR
 Z_MODES
-* Send ZMODEM main loop, header processor
+* Send date and time from unixy receiver via ZMODEM tricks.
 * in  DP=SECTOR BUFFER LOC
 * in  U =HEADER BUFFER LOC
 *
