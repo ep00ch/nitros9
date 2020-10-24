@@ -18,12 +18,11 @@ CMS9619.D      set       1
                ttl       NitrOS-9 System Definitions for the CMS 9619 SBC
 
 
-RTC58321        set 58321
-MC6840          set 6840
+RTC58321       set 58321
+MC6840         set 6840
 
-*ClocType        set RTC58321
 ClocType       set MC6840
-
+*ClocType      set RTC58321 * This does not work as a tick source yet.
 
 **********************************
 * Ticks per second
@@ -79,9 +78,12 @@ T3LSB   rmb     1       * LSB for timer 3
 
 
 * ACIA0 is a lower address, but is the secondary ACIA.
-t1Base          equ ACIA0Base
-t0Base          equ ACIA1Base
 termBase        equ ACIA1Base
+t0Base          equ ACIA1Base
+t1Base          equ ACIA0Base
+t2Base          equ PIA1Base
+pBase           equ PIA1Base
+
 SY6551B         equ ACIA0Base   * DriveWire ACIA
 
 SYCONSET        equ %00011111   * 19200 bps

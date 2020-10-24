@@ -2,11 +2,13 @@ ifdef LOCAL
 # so we can compile from within the loaders folder
 AS = lwasm 
 AFLAGS = 
+LEVEL1 = ../../modules
 RM = rm -f
 else
 include ../port.mak
 endif
 
+AFLAGS		+= --includedir=$(LEVEL1)/modules
 
 # Format to dump boot loader to RAM using DEBUG19.
 %.dbge : %.asm

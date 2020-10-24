@@ -66,15 +66,15 @@ HWInit
 *       Carry Clear = OK, Set = Error
 *       B  = error (Carry Set)
 *
-* reserve $9xxx
-        ldd     #$ffff
-        std     $212
+          * reserve $9800-$9F00 area with reset vectors, etc.
+          ldd     #$00ff
+          std     $212
 
-        ldx     ACVECT          * get the debugger's ACIA vector
-        stx     aciaddr,u       * store it for later
-*        sty     ACVECT          * save our ACIA vector in its place
-        clrb                    * clear carry, no error
-        rts
+          ldx     ACVECT          * get the debugger's ACIA vector
+          stx     aciaddr,u       * store it for later
+*         sty     ACVECT          * save our ACIA vector in its place
+          clrb                    * clear carry, no error
+          rts
 
 *--------------------------------------------------------------------------
 HWTerm

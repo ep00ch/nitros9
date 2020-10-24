@@ -109,8 +109,7 @@ ZTEMP   RMB     2
 ZCRCX   EQU     ZF0P3
 ZFEND   EQU     ZHCRLF
 
-        ORG     $9000
-*        ORG     $D000
+        ORG     $9800
 
 *********************************************************************
 Z_JMPS

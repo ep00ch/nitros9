@@ -27,11 +27,10 @@
         use     defsfile
         use     drivewire.d
 
-
 DOSBUF  equ     $2600           * RAM LOAD LOCATION FOR THE DOS COMMAND
 SECMAX  equ     18              * MAXIMUM NUMBER OF SECTORS PER TRACK
 
-        ORG     $9014
+        ORG     $9E00
 
 * CMS 9619 Init
         ldx     #ACIA0Base      * GET ACIA0 ADDRESS
@@ -55,7 +54,8 @@ SECMAX  equ     18              * MAXIMUM NUMBER OF SECTORS PER TRACK
 * DW Init
         lda     #OP_INIT
         jsr     A1OUT           * Send DW init command (no response)
-* read sector 0
+
+* Read sector 0
         ldx     #DOSBUF         * start address to save to
         lda     #$00
 
@@ -64,10 +64,10 @@ SECMAX  equ     18              * MAXIMUM NUMBER OF SECTORS PER TRACK
         bsr     DW_READ         * Send DW read command
 
         leax    ,s              * restore start of track location
-*       ldb     DD.TKS,x        * get sectors/track
-*       clra
-*       tfr     d,y             * y is sector counter to load track
-*       ldy     SECMAX          * y is sector counter to load track
+*        ldb     DD.TKS,x        * get sectors/track
+*        clra
+*        tfr     d,y             * y is sector counter to load track
+*        ldy     SECMAX          * y is sector counter to load track
 
 *        lda     #34             * want track 34
 *        mul                     * d is boot LSN < Not working
@@ -141,3 +141,4 @@ A1RCV2  LDA     $01,X           * READ ACIA STATUS REGISTER
 A1Exit
         PULS    X,PC            * RESTORE XREG, RETURN
 
+* Time

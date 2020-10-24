@@ -5,6 +5,7 @@ vpath %.hp	$(LEVEL1)/sys
 DEPENDS		= ./makefile
 
 SYSFILES	= ../../sys/errmsg ../../sys/motd ../../sys/password inetd.conf
+CMSHELP		= prog.hp
 HELPFILES	= asm.hp attr.hp backup.hp binex.hp build.hp chd.hp \
 		chx.hp cmp.hp cobbler.hp config.hp copy.hp cputype.hp date.hp \
 		dcheck.hp debug.hp ded.hp deiniz.hp del.hp deldir.hp devs.hp \
@@ -16,7 +17,8 @@ HELPFILES	= asm.hp attr.hp backup.hp binex.hp build.hp chd.hp \
 		padrom.hp park.hp procs.hp prompt.hp pwd.hp pxd.hp \
 		rename.hp save.hp setime.hp \
 		setpr.hp shell.hp sleep.hp tee.hp tmode.hp touch.hp tsmon.hp \
-		tuneport.hp unlink.hp verify.hp xmode.hp
+		tuneport.hp unlink.hp verify.hp xmode.hp \
+		$(CMSHELP)
 HELPMSG		= helpmsg
 ALLOBJS		= $(SYSFILES) $(HELPMSG)
 
