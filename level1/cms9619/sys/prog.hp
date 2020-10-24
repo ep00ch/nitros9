@@ -1,0 +1,21 @@
+@PROG
+Syntax: Prog
+Usage : Starts the CMS EEPROM programmer. Warning: exits to debugger.
+Subcommands:
+PROG -    Program the EEPROM
+STAT -    Display the current program settings
+TEST -    Compare program to EEPROM
+VERF -    Verify the program*
+VIEW -    View a hex dump of the program
+CLR  -    Clear the program
+READ -    Read in the EEPROM data
+
+2716 -    Specify 2716  EEPROM
+2516 -    Specify 2516  EEPROM
+2732 -    Specify 2732  EEPROM
+2732A-    Specify 2732A EEPROM
+2764 -    Specify 2764  EEPROM
+27128-    Specify 27128 EEPRO
+
+Each command can accept parameters in hex format:
+START  END  RAM-ADDR ROM-OFFSET
