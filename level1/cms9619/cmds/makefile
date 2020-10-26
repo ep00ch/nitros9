@@ -1,8 +1,7 @@
-include ../port.mak
+include ../../coco1/cmds/makefile
 
 CMDS_CMS	= prog
 
-include ../../coco1/cmds/makefile
 
 showobjs:
 	@$(ECHO) $(CMDS) $(CMDS_CMS)

@@ -7,8 +7,8 @@ DEPENDS		= ./makefile
 
 KERNEL_CMS	= $(MD)/rel $(MD)/init0_cms $(MD)/krn $(MD)/krnp2 $(MD)/init_cms
 
-TERM		= $(MD)/sc6551_cms.dr $(MD)/scbbp.dr $(MD)/term_sc6551_cms.dt \
-			$(MD)/t0_sc6551_cms.dd $(MD)/t1_sc6551_cms.dd \
+TERM		= $(MD)/cm6551.dr $(MD)/scbbp.dr $(MD)/term_cm6551.dt \
+			$(MD)/t0_cm6551.dd $(MD)/t1_cm6551.dd \
 			$(MD)/p_scbbp_cms.dd
 PIPE		= $(MD)/pipeman.mn $(MD)/piper.dr $(MD)/pipe.dd
 CLOCKCMS	= $(MD)/clock $(MD)/clock2_cms 
@@ -22,9 +22,9 @@ BOOTF_POST	= $(MD)/ddx0.dd $(MD)/scf.mn \
 		$(CLOCKCMS) \
 		$(MD)/sysgo
 
-KERNELS 	= kernel_dw_sc6551 kernel_dw_mc6821 kernel_zm
+KERNELS 	= kernel_dw_cm6551 kernel_dw_cm6821 kernel_zm
 
-BOOTFILES	= bootfile_dw_sc6551 bootfile_dw_mc6821 bootfile_zm
+BOOTFILES	= bootfile_dw_cm6551 bootfile_dw_cm6821 bootfile_zm
 
 ALLOBJS		= $(BOOTFILES) $(KERNELS)
 

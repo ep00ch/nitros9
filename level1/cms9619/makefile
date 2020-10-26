@@ -21,8 +21,8 @@ STARTUP		= startup
 DSK		= $(DISTROVER).dsk
 
 DSKS		= $(DISTROVER)_zm.dsk \
-		$(DISTROVER)_dw_sc6551.dsk \
-		$(DISTROVER)_dw_mc6821.dsk
+		$(DISTROVER)_dw_cm6551.dsk \
+		$(DISTROVER)_dw_cm6821.dsk
 
 # Make all components
 all:

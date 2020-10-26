@@ -81,8 +81,18 @@ T3LSB   rmb     1       * LSB for timer 3
 termBase        equ ACIA1Base
 t0Base          equ ACIA1Base
 t1Base          equ ACIA0Base
-t2Base          equ PIA1Base
+*t2Base          equ PIA1Base
 pBase           equ PIA1Base
+
+* Terminals for CMS 9650A SERIAL I/O Card.
+t2Base         equ $FF80
+t3Base         equ $FF82
+t4Base         equ $FF84
+t5Base         equ $FF86
+t6Base         equ $FF88
+t7Base         equ $FF8A
+t8Base         equ $FF8C
+t9Base         equ $FF8E
 
 SY6551B         equ ACIA0Base   * DriveWire ACIA
 
