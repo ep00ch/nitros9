@@ -41,7 +41,7 @@ rb_dw_% : $(MD)/rbdw.dr $(MD)/dwio_%.sb $(MD)/x1.dd $(MD)/x2.dd $(MD)/x3.dd
 kernel_% : $(KERNEL_CMS) $(MD)/boot_%
 	$(MERGE) $^ > $@
 
-bootfile_% : $(BOOTF_PRE) rb_% $(BOOTF_POST) $(DEPENDS)
+bootfile_% : $(BOOTF_PRE) rb_% $(BOOTF_POST)
 	$(MERGE) $^ > $@
 
 clean :
