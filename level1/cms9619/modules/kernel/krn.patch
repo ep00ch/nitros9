@@ -1,0 +1,18 @@
+diff --git a/level1/modules/kernel/krn.asm b/level1/modules/kernel/krn.asm
+index c55e08a2..4c7f8bf4 100644
+--- a/level1/modules/kernel/krn.asm
++++ b/level1/modules/kernel/krn.asm
+@@ -272,6 +272,13 @@ L0158    ldx   <D.FMBM
+          stb   $1C,x                    mark $E000-$E7FF I/O area as allocated
+          stb   $1D,x                    mark $E800-$EFFF I/O area as allocated
+          ELSE
++         IFNE  cms9619
++         IFNE  ROM-1
++* CMS 9619 needs $9D00-$9FFF reserved for DEBUG19 RAM reset vectors and globals
++         ldb   #%00000111
++         stb   $13,x                    mark $9D00-$9FFF I/O area as allocated
++         ENDC
++         ENDC
+ * CoCo needs $0000-$04FF reserved
+          ldb   #%11111000
+          stb   ,x                       mark $0000-$04FF as allocated

@@ -5,7 +5,7 @@ MD		= ../modules
 CMDS		= ../cmds
 DEPENDS		= ./makefile
 
-KERNEL_CMS	= $(MD)/rel $(MD)/init0_cms $(MD)/krn $(MD)/krnp2 $(MD)/init_cms
+KERNEL_CMS	= $(MD)/rel $(MD)/init0 $(MD)/krn_cms $(MD)/krnp2 $(MD)/init_cms
 
 TERM		= $(MD)/cm6551.dr $(MD)/scbbp.dr $(MD)/term_cm6551.dt \
 			$(MD)/t0_cm6551.dd $(MD)/t1_cm6551.dd \

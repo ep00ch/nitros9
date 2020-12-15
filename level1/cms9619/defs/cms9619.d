@@ -56,6 +56,8 @@ IOBase          equ $FFC0   * U12 PAL DECODER
 
 
 EXTIO           equ $FFC0   * Free for External IO
+ROMBase         equ $E000   * Start of NitrOS-9 Boot ROM, if equipped
+
 
 PIA0Base        equ $FFC4   *-2 * U31 MC6821 PIA - RTC and BAUD DIP
 RTCBase         equ $FFC4   * RTC is on PIA0
@@ -85,14 +87,14 @@ t1Base          equ ACIA0Base
 pBase           equ PIA1Base
 
 * Terminals for CMS 9650A SERIAL I/O Card.
-t2Base         equ $FF80
-t3Base         equ $FF82
-t4Base         equ $FF84
-t5Base         equ $FF86
-t6Base         equ $FF88
-t7Base         equ $FF8A
-t8Base         equ $FF8C
-t9Base         equ $FF8E
+t2Base         equ EXTIO+0
+t3Base         equ EXTIO+2
+t4Base         equ EXTIO+4
+t5Base         equ EXTIO+6
+t6Base         equ EXTIO+8
+t7Base         equ EXTIO+10
+t8Base         equ EXTIO+12
+t9Base         equ EXTIO+14
 
 SY6551B         equ ACIA0Base   * DriveWire ACIA
 
