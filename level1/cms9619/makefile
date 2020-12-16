@@ -13,6 +13,8 @@ DIRS		= defs cmds modules sys bootfiles bootroms loaders
 
 
 CMDS		= $(shell $(CD) cmds; make --no-print-directory showobjs)
+CMDS_D2		= $(shell $(CD) cmds; make --no-print-directory showobjs_d2)
+CMDS_DW		= $(shell $(CD) cmds; make --no-print-directory showobjs_dw)
 CMDS_DEMO	= $(shell $(CD) cmds; make --no-print-directory showobjs_demo)
 SYS		= $(shell $(CD) sys; make --no-print-directory showobjs)
 DEFS		= $(shell $(CD) defs; make --no-print-directory showobjs)
@@ -53,7 +55,7 @@ $(DISTROVER)_%.dsk:
 	$(MAKDIR) $@,CMDS
 	$(MAKDIR) $@,SYS
 	$(MAKDIR) $@,DEFS
-	$(CD) cmds; $(OS9COPY) $(CMDS) ../$@,CMDS
+	$(CD) cmds; $(OS9COPY) $(sort $(CMDS) $(CMDS_D2)) ../$@,CMDS
 	$(OS9ATTR_EXEC) $(foreach file,$(CMDS),$@,CMDS/$(file))
 	$(OS9RENAME) $@,CMDS/$(WHICHSHELL) shell
 	$(CD) sys; $(CPL) $(SYS) ../$@,SYS

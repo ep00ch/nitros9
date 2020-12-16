@@ -2,13 +2,34 @@
 
 Adds a level 1 port for the CMS 9619 SBC. You need 2 serial devices. One for the terminal 
 connection, and one for the Drivewire connection.
-
+To build it, run:
 ```
 make dsk PORTS=cms9619 
 ```
 Start your Drivewire server using NOS9_6809_L1_v030300_cms9619_dw_sc6551.dsk running
 on a serial device connected to ACIA0.
-Then run the loaders/cms_loader.exp script with your other serial device, connected to ACIA1, as an argument.
+
+If you already have DEBUG19 on ROM, then run:
+
+```
+cd level1/cms9619/loaders
+expect cms_loader.exp /dev/cu.usbserial
+```
+
+replacing "cu.usbserial" with the actual serial device connected to ACIA0. 
+The script will transfer and run a small loader to bootstrap the system from drivewire.
+
+You can program an EEPROM with the kernel file by setting the appropriate jumpers on 
+the board, inserting a 28C64 type EEPROM into U13, and running:
+```
+expect cms_loader.exp /dev/cu.usbserial ../bootroms/NOS9_*_dw_cm6551.dbgee
+```
+Despite the errors that are generated 
+(DEBUG19 checks the value in memory before the EEPROM has finsihed programming it),
+the EEPROM will be programmed with the kernel in about 15 minutes.
+Move the EEPROM to U17, replacing the DEBUG19 ROM, to use it.
+
+
 
 # The NitrOS-9 Repository (on GitHub)
 

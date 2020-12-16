@@ -89,10 +89,10 @@ if {!$OS9_boot} {
              ":"     {send_echo "C 0400 9EFF"}
      }
      
-     expect {
-          timeout {interact : return}
-          ":"     {send_echo "C A000 DFFF"}
-     }
+    #     expect {
+    #      timeout {interact : return}
+    #      ":"     {send_echo "C A000 BFFF"}
+    #}
 }
 # Send the debugger command file to load the program
 expect {

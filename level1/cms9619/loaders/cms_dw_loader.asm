@@ -89,6 +89,7 @@ dw_rest
         LDD     DOSBUF          * GET FIRST TWO BYTES OF RAM DATA
         CMPD    #$4F53           * #'OS   * LOOK FOR 'OS' (OS9) AT START OF BUFFER
         LBEQ    DOSBUF+2        * IF 'OS' THEN BRANCH TO DATA LOADED IN RAM
+        SWI                     * Some error got us here. Debugger should run.
         RTS
 
 ********************************************************************

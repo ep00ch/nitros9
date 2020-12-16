@@ -110,12 +110,18 @@ WRTSTR          equ $FE88
 * These defs are not strictly for 'Boot', but are for booting the
 * system.
 *
-Bt.Start        EQU     $C000               Start address of the boot track in HI memory
+
+    IFEQ ROM-1
+Bt.Start        EQU     $E000               Start address of the boot track in HI memory
+Bt.Size         EQU     $1000               Maximum size of bootfile
+    ELSE
+Bt.Start        EQU     $CE00               Start address of the boot track in HI memory
+Bt.Size         EQU     $1200               Maximum size of bootfile
+    ENDC
 
 Bt.Track        EQU     34                  Boot track
 Bt.Sec          EQU     0                   Start LSN of boot area on boot track
 
-Bt.Size         EQU     $2000               Maximum size of bootfile
 
 
 ********************************

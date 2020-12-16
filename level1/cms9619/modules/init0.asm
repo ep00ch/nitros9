@@ -63,7 +63,6 @@ InitVectors
 * Setup CMS 9619 interrupt vectors in $9F page to point to
 * NitrOS-9's vectors in the $01 page, if DEBUG19 installed.
 *
-*       orcc    #%01010000           disable FIRQ, IRQ interrupts
         ldd     $FD1C               check if DEBUG19 ROM installed
         cmpd    #$4445              first 2 letters of "DEBUG19"
         bne     init1               if not, skip vector changes
@@ -86,11 +85,6 @@ init1
         ldd     #$00ff
         stb     ,-s         save status of start, $00=cold, $01=warm, $FF = startup: do complete boot (above)
         tfr     a,dp        Set the DP to $00
-        clrb                clear out ALL of direct page
-        tfr   d,x           here, too
-L0072   sta   ,x+           clear out the direct page
-        incb                Boot won't be using any of it!
-        bne   L0072
 
 *--------------------------------------------------------------------------
 InitIO
@@ -167,6 +161,7 @@ JmpKrn
         leax    <eom,pcr
         ldd     M$Exec,x
         jmp     d,x
+        bra     StartupMsg      in case of error, keep looping
 
 *--------------------------------------------------------------------------
     IFEQ  ROM-1

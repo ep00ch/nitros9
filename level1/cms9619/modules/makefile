@@ -11,7 +11,7 @@ BOOTERS		= boot_zm boot_dw_cm6551 boot_dw_cm6821
 
 BOOTTRACK	= rel init0 $(BOOTERS)
 
-KERNEL		= krn krn_cms krnp2
+KERNEL		= krn_cms krn_cms_rom krnp2
 SYSMODS		= ioman init_cms init0_rom sysgo sysgo_rom vectors_cms
 CLOCKS	        = clock clock2_cms
 
@@ -36,7 +36,7 @@ PIPE		= pipeman.mn \
 
 ALLOBJS		= $(BOOTTRACK) $(KERNEL) $(SYSMODS) $(CLOCKS) $(RBF) $(SCF) $(PIPE) $(DW) cms_9650.dr
 AUTOGEN		= cm6551.asm term_cm6551.asm t0_cm6551.asm t1_cm6551.asm\
-		init_cms.asm boot_dw_cms.asm p_scbbp_cms.asm scbbp.dr \
+		init_cms.asm p_scbbp_cms.asm scbbp.dr \
 		$(SIO)
 
 
@@ -50,7 +50,7 @@ $(KERNEL):
 	$(CP) kernel/$@ .
 
 %_rom: %.asm
-	$(AS) $(AFLAGS) $(ASOUT)$@ $< -DROM=1
+	$(AS) -l$@.lst $(AFLAGS) $(ASOUT)$@ $< -DROM=1
 
 
 cm6551.asm: sc6551.asm
