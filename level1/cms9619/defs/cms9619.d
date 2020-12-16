@@ -55,7 +55,7 @@ HW.Page        set       $F0                 Device descriptor hardware page
 IOBase          equ $FFC0   * U12 PAL DECODER
 
 
-EXTIO           equ $FFC0   * Free for External IO
+EXTIO           equ $FF80   * Free for External IO
 ROMBase         equ $E000   * Start of NitrOS-9 Boot ROM, if equipped
 
 
@@ -86,15 +86,20 @@ t1Base          equ ACIA0Base
 *t2Base          equ PIA1Base
 pBase           equ PIA1Base
 
+* External Cards
+DiskCBase        equ EXTIO+0
+SerCBase        equ EXTIO+16
+ParCBase        equ EXTIO+32
+
 * Terminals for CMS 9650A SERIAL I/O Card.
-t2Base         equ EXTIO+0
-t3Base         equ EXTIO+2
-t4Base         equ EXTIO+4
-t5Base         equ EXTIO+6
-t6Base         equ EXTIO+8
-t7Base         equ EXTIO+10
-t8Base         equ EXTIO+12
-t9Base         equ EXTIO+14
+t2Base          equ SerCBase+0
+t3Base          equ SerCBase+2
+t4Base          equ SerCBase+4
+t5Base          equ SerCBase+6
+t6Base          equ SerCBase+8
+t7Base          equ SerCBase+10
+t8Base          equ SerCBase+12
+t9Base          equ SerCBase+14
 
 SY6551B         equ ACIA0Base   * DriveWire ACIA
 

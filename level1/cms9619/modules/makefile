@@ -7,7 +7,7 @@ AFLAGS		+= --includedir=$(LEVEL1)/modules
 DEPENDS		= ./makefile
 TPB		= $(3RDPARTY)/booters
 
-BOOTERS		= boot_zm boot_dw_cm6551 boot_dw_cm6821
+BOOTERS		= boot_zm boot_dw_cm6551 boot_dw_cm6821 boot_udrive
 
 BOOTTRACK	= rel init0 $(BOOTERS)
 

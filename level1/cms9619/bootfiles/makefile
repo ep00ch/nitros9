@@ -22,18 +22,18 @@ BOOTF_POST	= $(MD)/ddx0.dd $(MD)/scf.mn \
 		$(CLOCKCMS) \
 		$(MD)/sysgo
 
-KERNELS 	= kernel_dw_cm6551 kernel_dw_cm6821 kernel_zm
+KERNELS 	= kernel_dw_cm6551 kernel_dw_cm6821 kernel_zm kernel_udrive
 
-BOOTFILES	= bootfile_dw_cm6551 bootfile_dw_cm6821 bootfile_zm
+BOOTFILES	= bootfile_dw_cm6551 bootfile_dw_cm6821
 
 ALLOBJS		= $(BOOTFILES) $(KERNELS)
 
 all : $(ALLOBJS)
 
-rb_zm :
-	# still need to make this.
-	touch $@
-
+rb_zm rb_udrive : kernel_dw_cm6551
+	# no rb drivers for these yet, so use dw drivers instead
+	$(CP) kernel_dw_cm6551 $@
+	
 rb_dw_% : $(MD)/rbdw.dr $(MD)/dwio_%.sb $(MD)/x1.dd $(MD)/x2.dd $(MD)/x3.dd
 	# Temporary DriveWire module
 	$(MERGE) $^ > $@
