@@ -1,7 +1,9 @@
 * Echo welcome message
 echo * Welcome to NitrOS-9 Level 1 *
 echo *    on the CMS 9619A ASBM    *
+echo 
 * Start system time from keyboard
-setime </term
+* System time is likely correct already
+* setime </term
 date -t
 

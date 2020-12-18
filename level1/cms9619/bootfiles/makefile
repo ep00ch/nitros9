@@ -20,7 +20,7 @@ BOOTF_POST	= $(MD)/ddx0.dd $(MD)/scf.mn \
 		$(TERM) \
 		$(PIPE) \
 		$(CLOCKCMS) \
-		$(MD)/sysgo
+		$(MD)/sysgo_cms
 
 KERNELS 	= kernel_dw_cm6551 kernel_dw_cm6821 kernel_zm kernel_udrive
 
